@@ -1,3 +1,11 @@
-template:
-  lookup:
-    master: template-master
+dotfiles:
+  matt:
+    path: /home/matt/src/dotfiles
+    cmd: 'git submodule update --init --remote --force dotbot;./install'
+    ssh:
+      host: github.com
+      fingerprint: '16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48'
+      enc: ssh-rsa
+    git:
+      repo: 'git@github.com:matthew-parlette/dotfiles.git'
+      branch: master
