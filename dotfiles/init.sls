@@ -18,7 +18,7 @@ dotfiles-{{ user }}:
     - name: {{ salt['pillar.get']('dotfiles:' + user + ':git:repo') }}
     - rev: {{ salt['pillar.get']('dotfiles:' + user + ':git:branch', 'master') }}
     - user: {{ user }}
-    - target: {{ dotfiles_path }}
+    - target: {{ salt['pillar.get']('dotfiles:' + user + ':path') }}
     - require:
       - pkg: git
       - ssh_known_hosts: dotfiles-{{ user }}
