@@ -7,7 +7,7 @@ include:
 {%- for user, settings in salt['pillar.get']('dotfiles', {}).items() %}
 
 dotfiles-{{ user }}:
-  {%- if salt['pillar.get']('dotfiles:' + user + 'ssh:host', False) and salt['pillar.get']('dotfiles:' + user + 'ssh:fingerprint', False) %}
+  {%- if salt['pillar.get']('dotfiles:' + user + ':ssh:host', False) and salt['pillar.get']('dotfiles:' + user + ':ssh:fingerprint', False) %}
   ssh_known_hosts.present:
     - name: {{ salt['pillar.get']('dotfiles:' + user + ':ssh:host') }}
     - user: {{ user }}
