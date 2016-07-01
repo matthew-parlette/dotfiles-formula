@@ -4,7 +4,7 @@
 include:
   - git
 
-{%- for user in salt['pillar.get']('dotfiles', {}).keys() %}
+{%- for user in salt['pillar.get']('dotfiles', {}).items() %}
 
 dotfiles-{{ user }}:
   {%- if salt['pillar.get']('dotfiles:' + user + 'ssh:host', False) and salt['pillar.get']('dotfiles:' + user + 'ssh:fingerprint', False) %}
