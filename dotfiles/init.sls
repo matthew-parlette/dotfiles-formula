@@ -4,16 +4,16 @@
 include:
   - git
 
-{% for user in salt['pillar.get']('dotfiles', {}).keys() %}
+{%- for user in salt['pillar.get']('dotfiles', {}).keys() %}
 
 dotfiles-{{ user }}:
-  {% if salt['pillar.get']('dotfiles:' + user + 'ssh:host', False) and salt['pillar.get']('dotfiles:' + user + 'ssh:fingerprint', False) %}
+  {%- if salt['pillar.get']('dotfiles:' + user + 'ssh:host', False) and salt['pillar.get']('dotfiles:' + user + 'ssh:fingerprint', False) %}
   ssh_known_hosts.present:
     - name: {{ salt['pillar.get']('dotfiles:' + user + ':ssh:host') }}
     - user: {{ user }}
     - fingerprint: {{ salt['pillar.get']('dotfiles:' + user + ':ssh:fingerprint') }}
     - enc: {{ salt['pillar.get']('dotfiles:' + user + ':ssh:enc', 'ssh-rsa') }}
-  {% endif %}
+  {%- endif %}
   git.latest:
     - name: {{ salt['pillar.get']('dotfiles:' + user + ':git:repo') }}
     - rev: {{ salt['pillar.get']('dotfiles:' + user + ':git:branch', 'master') }}
@@ -36,3 +36,4 @@ dotfiles-{{ user }}:
     - user: {{ user }}
     - group: {{ user }}
     - makedirs: True
+{%- endfor %}
