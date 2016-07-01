@@ -21,15 +21,15 @@ dotfiles-{{ user }}:
     - target: {{ salt['pillar.get']('dotfiles:' + user + ':path') }}
     - require:
       - pkg: git
-      - ssh_known_hosts: dotfiles.dotfiles-{{ user }}
-      - file: dotfiles.dotfiles-{{ user }}
+      - ssh_known_hosts: dotfiles-{{ user }}
+      - file: dotfiles-{{ user }}
   cmd.run:
     - name: {{ salt['pillar.get']('dotfiles:' + user + ':cmd') }}
     - user: {{ user }}
     - group: {{ user }}
     - cwd: {{ salt['pillar.get']('dotfiles:' + user + ':path') }}
     - require:
-      - git: dotfiles.dotfiles-{{ user }}
+      - git: dotfiles-{{ user }}
   file.directory:
     - name: {{ salt['pillar.get']('dotfiles:' + user + ':path') }}
     - user: {{ user }}
