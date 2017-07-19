@@ -12,6 +12,7 @@ dotfiles-{{ user }}:
     - name: {{ salt['pillar.get']('dotfiles:' + user + ':ssh:host') }}
     - user: {{ user }}
     - fingerprint: {{ salt['pillar.get']('dotfiles:' + user + ':ssh:fingerprint') }}
+    - fingerprint_hash_type: {{ salt['pillar.get']('dotfiles:' + user + ':ssh:fingerprint_hash_type', 'md5') }}
     - enc: {{ salt['pillar.get']('dotfiles:' + user + ':ssh:enc', 'ssh-rsa') }}
   {%- endif %}
   git.latest:
