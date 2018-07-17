@@ -26,8 +26,7 @@ dotfiles-{{ user }}:
       - file: dotfiles-{{ user }}
   cmd.run:
     - name: {{ salt['pillar.get']('dotfiles:' + user + ':cmd') }}
-    - user: {{ user }}
-    - group: {{ user }}
+    - runas: {{ user }}
     - cwd: {{ salt['pillar.get']('dotfiles:' + user + ':path') }}
     - require:
       - git: dotfiles-{{ user }}
